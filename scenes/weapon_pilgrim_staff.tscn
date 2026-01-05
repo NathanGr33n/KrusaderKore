@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6k9m3x5p2n8h"]
+
+[ext_resource type="Script" path="res://scripts/weapon_pilgrim_staff.gd" id="1_staff"]
+
+[node name="WeaponPilgrimStaff" type="Node2D"]
+script = ExtResource("1_staff")

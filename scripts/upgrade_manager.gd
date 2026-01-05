@@ -34,11 +34,19 @@ func _initialize_upgrade_pool() -> void:
 	available_upgrades.append(_create_cooldown_upgrade())
 	available_upgrades.append(_create_health_upgrade())
 	available_upgrades.append(_create_regen_upgrade())
+	available_upgrades.append(_create_pierce_upgrade())
+	available_upgrades.append(_create_lifesteal_upgrade())
+	available_upgrades.append(_create_luck_upgrade())
+	available_upgrades.append(_create_duration_upgrade())
+	available_upgrades.append(_create_faith_upgrade())
 	
 	# Create weapon upgrades
 	available_upgrades.append(_create_holy_bolt_upgrade())
 	available_upgrades.append(_create_crossbow_upgrade())
 	available_upgrades.append(_create_incense_upgrade())
+	available_upgrades.append(_create_pilgrim_staff_upgrade())
+	available_upgrades.append(_create_throwing_axes_upgrade())
+	available_upgrades.append(_create_mace_upgrade())
 
 func _create_might_upgrade() -> UpgradeData:
 	var upgrade = UpgradeData.new()
@@ -203,6 +211,92 @@ func _create_incense_upgrade() -> UpgradeData:
 	upgrade.upgrade_type = UpgradeData.UpgradeType.WEAPON
 	upgrade.weapon_scene = preload("res://scenes/weapon_incense.tscn")
 	upgrade.max_level = 1
+	return upgrade
+
+func _create_pilgrim_staff_upgrade() -> UpgradeData:
+	var upgrade = UpgradeData.new()
+	upgrade.upgrade_id = "weapon_pilgrim_staff"
+	upgrade.upgrade_name = "Pilgrim Staff"
+	upgrade.description = "Radial burst damaging all nearby enemies"
+	upgrade.upgrade_type = UpgradeData.UpgradeType.WEAPON
+	upgrade.weapon_scene = preload("res://scenes/weapon_pilgrim_staff.tscn")
+	upgrade.max_level = 1
+	return upgrade
+
+func _create_throwing_axes_upgrade() -> UpgradeData:
+	var upgrade = UpgradeData.new()
+	upgrade.upgrade_id = "weapon_throwing_axes"
+	upgrade.upgrade_name = "Throwing Axes"
+	upgrade.description = "Boomerang axes that return after traveling"
+	upgrade.upgrade_type = UpgradeData.UpgradeType.WEAPON
+	upgrade.weapon_scene = preload("res://scenes/weapon_throwing_axes.tscn")
+	upgrade.max_level = 1
+	return upgrade
+
+func _create_mace_upgrade() -> UpgradeData:
+	var upgrade = UpgradeData.new()
+	upgrade.upgrade_id = "weapon_mace"
+	upgrade.upgrade_name = "Heavy Mace"
+	upgrade.description = "Slow, devastating single-target strikes"
+	upgrade.upgrade_type = UpgradeData.UpgradeType.WEAPON
+	upgrade.weapon_scene = preload("res://scenes/weapon_mace.tscn")
+	upgrade.max_level = 1
+	return upgrade
+
+func _create_pierce_upgrade() -> UpgradeData:
+	var upgrade = UpgradeData.new()
+	upgrade.upgrade_id = "holy_crusade"
+	upgrade.upgrade_name = "Holy Crusade"
+	upgrade.description = "+15% might, +5% faith"
+	upgrade.upgrade_type = UpgradeData.UpgradeType.RELIC
+	upgrade.might_bonus = 0.15
+	upgrade.faith_bonus = 0.05
+	upgrade.max_level = 3
+	return upgrade
+
+func _create_lifesteal_upgrade() -> UpgradeData:
+	var upgrade = UpgradeData.new()
+	upgrade.upgrade_id = "blessed_chalice"
+	upgrade.upgrade_name = "Blessed Chalice"
+	upgrade.description = "+1 HP/s regen, +10 max HP"
+	upgrade.upgrade_type = UpgradeData.UpgradeType.RELIC
+	upgrade.regen_bonus = 1.0
+	upgrade.max_health_bonus = 10.0
+	upgrade.max_level = 3
+	return upgrade
+
+func _create_luck_upgrade() -> UpgradeData:
+	var upgrade = UpgradeData.new()
+	upgrade.upgrade_id = "divine_favor"
+	upgrade.upgrade_name = "Divine Favor"
+	upgrade.description = "+10% all stats"
+	upgrade.upgrade_type = UpgradeData.UpgradeType.RELIC
+	upgrade.might_bonus = 0.1
+	upgrade.area_bonus = 0.1
+	upgrade.cooldown_bonus = 0.1
+	upgrade.max_level = 2
+	return upgrade
+
+func _create_duration_upgrade() -> UpgradeData:
+	var upgrade = UpgradeData.new()
+	upgrade.upgrade_id = "martyrs_resolve"
+	upgrade.upgrade_name = "Martyr's Resolve"
+	upgrade.description = "+5 armor, +15% cooldown reduction"
+	upgrade.upgrade_type = UpgradeData.UpgradeType.RELIC
+	upgrade.armor_bonus = 5.0
+	upgrade.cooldown_bonus = 0.15
+	upgrade.max_level = 2
+	return upgrade
+
+func _create_faith_upgrade() -> UpgradeData:
+	var upgrade = UpgradeData.new()
+	upgrade.upgrade_id = "sacred_texts"
+	upgrade.upgrade_name = "Sacred Texts"
+	upgrade.description = "+20% faith, +10% area"
+	upgrade.upgrade_type = UpgradeData.UpgradeType.RELIC
+	upgrade.faith_bonus = 0.2
+	upgrade.area_bonus = 0.1
+	upgrade.max_level = 3
 	return upgrade
 
 func _check_weapon_evolution(weapon_id: String) -> void:

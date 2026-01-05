@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8m4n6x3p7k2h"]
+
+[ext_resource type="Script" path="res://scripts/boomerang_projectile.gd" id="1_boomerang"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_boomerang"]
+radius = 8.0
+
+[node name="BoomerangProjectile" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_boomerang")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_boomerang")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.8, 0.8, 0.8, 1)
+texture = ExtResource("res://icon.svg")
+scale = Vector2(0.13, 0.13)
