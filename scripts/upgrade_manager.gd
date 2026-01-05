@@ -14,6 +14,16 @@ func _ready() -> void:
 
 func set_player(p: Player) -> void:
 	player = p
+	# Register starting weapon (longsword)
+	var longsword_upgrade = UpgradeData.new()
+	longsword_upgrade.upgrade_id = "weapon_longsword"
+	longsword_upgrade.upgrade_name = "Longsword Arc"
+	longsword_upgrade.current_level = 1
+	acquired_upgrades["weapon_longsword"] = longsword_upgrade
+	# Find the existing longsword in player children
+	for child in player.get_children():
+		if child is WeaponLongsword:
+			acquired_weapons.append(child)
 
 func _initialize_upgrade_pool() -> void:
 	# Create basic stat upgrades
@@ -134,6 +144,15 @@ func apply_upgrade(upgrade: UpgradeData) -> void:
 		if upgrade.upgrade_type == UpgradeData.UpgradeType.RELIC:
 			acquired_relics.append(upgrade.upgrade_id)
 	
+	# Check for weapon evolution
+	if upgrade.upgrade_type == UpgradeData.UpgradeType.WEAPON:
+		_check_weapon_evolution(upgrade.upgrade_id)
+	elif upgrade.upgrade_type == UpgradeData.UpgradeType.RELIC:
+		# Check all acquired weapons for possible evolution
+		for weapon_id in acquired_upgrades.keys():
+			if weapon_id.begins_with("weapon_"):
+				_check_weapon_evolution(weapon_id)
+	
 	# Apply stat bonuses
 	player.might += upgrade.might_bonus
 	player.area += upgrade.area_bonus
@@ -185,3 +204,36 @@ func _create_incense_upgrade() -> UpgradeData:
 	upgrade.weapon_scene = preload("res://scenes/weapon_incense.tscn")
 	upgrade.max_level = 1
 	return upgrade
+
+func _check_weapon_evolution(weapon_id: String) -> void:
+	# Check if this weapon can evolve with acquired relics
+	var evolution_map = {
+		"weapon_longsword": {
+			"relic": "iron_discipline",
+			"evolved_scene": preload("res://scenes/weapon_longsword_evolved.tscn")
+		},
+		"weapon_holy_bolt": {
+			"relic": "banner_jerusalem",
+			"evolved_scene": preload("res://scenes/weapon_holy_bolt_evolved.tscn")
+		}
+	}
+	
+	if not evolution_map.has(weapon_id):
+		return
+	
+	var evolution_data = evolution_map[weapon_id]
+	if not has_relic(evolution_data["relic"]):
+		return
+	
+	# Find and remove the old weapon
+	for weapon in acquired_weapons:
+		if weapon.weapon_name == "Longsword Arc" or weapon.weapon_name == "Holy Bolt":
+			weapon.queue_free()
+			acquired_weapons.erase(weapon)
+			break
+	
+	# Add the evolved weapon
+	var evolved_weapon = evolution_data["evolved_scene"].instantiate()
+	if evolved_weapon:
+		player.add_child(evolved_weapon)
+		acquired_weapons.append(evolved_weapon)
