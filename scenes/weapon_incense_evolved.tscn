@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5k7m2x8p9n4h"]
+
+[ext_resource type="Script" path="res://scripts/weapon_incense_evolved.gd" id="1_incense_evo"]
+
+[node name="WeaponIncenseEvolved" type="Node2D"]
+script = ExtResource("1_incense_evo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.7, 1, 1)
+texture = ExtResource("res://icon.svg")
+scale = Vector2(0.18, 0.18)

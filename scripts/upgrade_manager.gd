@@ -304,11 +304,28 @@ func _check_weapon_evolution(weapon_id: String) -> void:
 	var evolution_map = {
 		"weapon_longsword": {
 			"relic": "iron_discipline",
-			"evolved_scene": preload("res://scenes/weapon_longsword_evolved.tscn")
+			"evolved_scene": preload("res://scenes/weapon_longsword_evolved.tscn"),
+			"old_name": "Longsword Arc"
 		},
 		"weapon_holy_bolt": {
 			"relic": "banner_jerusalem",
-			"evolved_scene": preload("res://scenes/weapon_holy_bolt_evolved.tscn")
+			"evolved_scene": preload("res://scenes/weapon_holy_bolt_evolved.tscn"),
+			"old_name": "Holy Bolt"
+		},
+		"weapon_crossbow": {
+			"relic": "holy_fervor",
+			"evolved_scene": preload("res://scenes/weapon_crossbow_evolved.tscn"),
+			"old_name": "Crossbow Volley"
+		},
+		"weapon_pilgrim_staff": {
+			"relic": "sacred_texts",
+			"evolved_scene": preload("res://scenes/weapon_pilgrim_staff_evolved.tscn"),
+			"old_name": "Pilgrim Staff"
+		},
+		"weapon_incense": {
+			"relic": "desert_wind",
+			"evolved_scene": preload("res://scenes/weapon_incense_evolved.tscn"),
+			"old_name": "Incense Burner"
 		}
 	}
 	
@@ -320,8 +337,9 @@ func _check_weapon_evolution(weapon_id: String) -> void:
 		return
 	
 	# Find and remove the old weapon
+	var old_weapon_name = evolution_data.get("old_name", "")
 	for weapon in acquired_weapons:
-		if weapon.weapon_name == "Longsword Arc" or weapon.weapon_name == "Holy Bolt":
+		if weapon.has_method("get") and weapon.get("weapon_name") == old_weapon_name:
 			weapon.queue_free()
 			acquired_weapons.erase(weapon)
 			break

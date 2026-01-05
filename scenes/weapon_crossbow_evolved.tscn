@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c9n5m8x2k7p4h"]
+
+[ext_resource type="Script" path="res://scripts/weapon_crossbow_evolved.gd" id="1_crossbow_evo"]
+[ext_resource type="PackedScene" uid="uid://d3m7x2k9p4h8n" path="res://scenes/projectile.tscn" id="2_projectile"]
+
+[node name="WeaponCrossbowEvolved" type="Node2D"]
+script = ExtResource("1_crossbow_evo")
+projectile_scene = ExtResource("2_projectile")
