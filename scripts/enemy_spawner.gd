@@ -2,10 +2,12 @@ extends Node2D
 class_name EnemySpawner
 
 @export var enemy_scene: PackedScene
+@export var elite_enemy_scene: PackedScene
 @export var xp_gem_scene: PackedScene
 @export var spawn_interval: float = 2.0
 @export var spawn_distance: float = 600.0
 @export var max_enemies: int = 100
+@export var elite_spawn_chance: float = 0.1  # 10% chance
 
 var player: Player
 var spawn_timer: float = 0.0
@@ -41,7 +43,12 @@ func _process(delta: float) -> void:
 			spawn_timer = current_spawn_interval
 
 func spawn_enemy() -> void:
-	var enemy = enemy_scene.instantiate() as Enemy
+	# Decide if spawning elite
+	var scene_to_spawn = enemy_scene
+	if elite_enemy_scene and randf() < elite_spawn_chance:
+		scene_to_spawn = elite_enemy_scene
+	
+	var enemy = scene_to_spawn.instantiate() as Enemy
 	if not enemy:
 		return
 	
