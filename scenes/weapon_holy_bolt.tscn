@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7k2m5x3p9h4n"]
+
+[ext_resource type="Script" path="res://scripts/weapon_holy_bolt.gd" id="1_holy_bolt"]
+[ext_resource type="PackedScene" uid="uid://d3m7x2k9p4h8n" path="res://scenes/projectile.tscn" id="2_projectile"]
+
+[node name="WeaponHolyBolt" type="Node2D"]
+script = ExtResource("1_holy_bolt")
+projectile_scene = ExtResource("2_projectile")

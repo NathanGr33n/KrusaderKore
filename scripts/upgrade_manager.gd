@@ -24,6 +24,11 @@ func _initialize_upgrade_pool() -> void:
 	available_upgrades.append(_create_cooldown_upgrade())
 	available_upgrades.append(_create_health_upgrade())
 	available_upgrades.append(_create_regen_upgrade())
+	
+	# Create weapon upgrades
+	available_upgrades.append(_create_holy_bolt_upgrade())
+	available_upgrades.append(_create_crossbow_upgrade())
+	available_upgrades.append(_create_incense_upgrade())
 
 func _create_might_upgrade() -> UpgradeData:
 	var upgrade = UpgradeData.new()
@@ -150,3 +155,33 @@ func apply_upgrade(upgrade: UpgradeData) -> void:
 
 func has_relic(relic_id: String) -> bool:
 	return acquired_relics.has(relic_id)
+
+func _create_holy_bolt_upgrade() -> UpgradeData:
+	var upgrade = UpgradeData.new()
+	upgrade.upgrade_id = "weapon_holy_bolt"
+	upgrade.upgrade_name = "Holy Bolt"
+	upgrade.description = "Fires homing projectiles at enemies"
+	upgrade.upgrade_type = UpgradeData.UpgradeType.WEAPON
+	upgrade.weapon_scene = preload("res://scenes/weapon_holy_bolt.tscn")
+	upgrade.max_level = 1
+	return upgrade
+
+func _create_crossbow_upgrade() -> UpgradeData:
+	var upgrade = UpgradeData.new()
+	upgrade.upgrade_id = "weapon_crossbow"
+	upgrade.upgrade_name = "Crossbow Volley"
+	upgrade.description = "Fires 3 projectiles in a spread"
+	upgrade.upgrade_type = UpgradeData.UpgradeType.WEAPON
+	upgrade.weapon_scene = preload("res://scenes/weapon_crossbow.tscn")
+	upgrade.max_level = 1
+	return upgrade
+
+func _create_incense_upgrade() -> UpgradeData:
+	var upgrade = UpgradeData.new()
+	upgrade.upgrade_id = "weapon_incense"
+	upgrade.upgrade_name = "Incense Burner"
+	upgrade.description = "Orbits player, damaging nearby enemies"
+	upgrade.upgrade_type = UpgradeData.UpgradeType.WEAPON
+	upgrade.weapon_scene = preload("res://scenes/weapon_incense.tscn")
+	upgrade.max_level = 1
+	return upgrade
