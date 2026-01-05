@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3kx7m8q4p2rn"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="PackedScene" uid="uid://bnkx8f7hh0m4r" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://c2fj8k3m9xh7p" path="res://scenes/enemy.tscn" id="3_enemy"]
+[ext_resource type="PackedScene" uid="uid://dh5m2x9p1k8vn" path="res://scenes/xp_gem.tscn" id="4_xp_gem"]
+[ext_resource type="PackedScene" uid="uid://b8jq4m7n2xk9t" path="res://scenes/hud.tscn" id="5_hud"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="6_game_manager"]
+[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="7_spawner"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("6_game_manager")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(640, 360)
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource("7_spawner")
+enemy_scene = ExtResource("3_enemy")
+xp_gem_scene = ExtResource("4_xp_gem")
+
+[node name="HUD" parent="." instance=ExtResource("5_hud")]
