@@ -28,13 +28,27 @@ A Vampire Survivors-style auto-combat horde-survival roguelite set during the Th
   - Holy Bolt + Banner of Jerusalem → Dragonpiercer
 - **Elite Enemies**: 10% spawn chance for stronger elite variants (100 HP, 10 damage, 5 XP)
 
+### Phase 3 — Content Expansion (COMPLETE)
+
+✅ Content Added:
+- **7 Total Weapons**: Longsword, Holy Bolt, Crossbow, Incense, Pilgrim Staff, Throwing Axes, Heavy Mace
+- **12 Passive Relics**: Comprehensive stat boost options with multiple upgrade levels
+  - Holy Crusade, Blessed Chalice, Divine Favor, Martyr's Resolve, Sacred Texts (new)
+- **9 Enemy Types**: Basic, Elite, Archer (ranged), Raider (fast), Mamluk (tank), Ghoul (regen)
+- **8 Weapon Evolutions**: Complete evolution paths for all weapons
+  - Crossbow + Holy Fervor → Siege Ballista (5 projectiles)
+  - Pilgrim Staff + Sacred Texts → Divine Wrath (220px radius)
+  - Incense + Desert Wind → Sacred Censers (faster orbit)
+- **Weighted Enemy Spawning**: 50% basic, 15% archer, 10% raider, 10% mamluk, 5% ghoul, 10% elite
+
 ### Current Features
 - Player with health, armor, regen, and stat modifiers (might/area/cooldown/faith)
-- 4 weapon types with unique mechanics (melee arc, homing projectiles, multi-shot, orbiting)
-- Weapon evolution system combining weapons with relics
-- Level-up selection UI pausing game with 3 random upgrades
-- 7 passive relic upgrades affecting stats
-- Enemies spawn with increasing frequency, 10% elite spawn chance
+- 7 weapon types with unique mechanics (arc, homing, multi-shot, orbiting, radial burst, boomerang, heavy strike)
+- 8 weapon evolutions combining weapons with specific relics
+- Level-up selection UI with 3 random upgrades from pool of 19 options
+- 12 passive relics with multiple upgrade levels
+- 9 diverse enemy types with unique behaviors (ranged, fast, tank, regenerating)
+- Weighted enemy spawning system for varied encounters
 - XP gems automatically move toward player when in range
 - Camera follows player
 - Health regeneration system
