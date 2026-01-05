@@ -16,6 +16,7 @@ var might: float = 1.0  # Damage multiplier
 var area: float = 1.0   # Area multiplier
 var cooldown_reduction: float = 1.0
 var faith: float = 0.0  # Special scaling stat
+var health_regen: float = 0.0  # HP per second
 
 signal health_changed(new_health: float, max_health: float)
 signal level_up(new_level: int)
@@ -29,6 +30,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_handle_movement(delta)
+	_handle_regeneration(delta)
 
 func _handle_movement(delta: float) -> void:
 	var input_vector := Vector2.ZERO
@@ -68,6 +70,10 @@ func level_up_player() -> void:
 	level += 1
 	experience_to_next_level = int(experience_to_next_level * 1.2)
 	level_up.emit(level)
+
+func _handle_regeneration(delta: float) -> void:
+	if health_regen > 0 and current_health < max_health:
+		heal(health_regen * delta)
 
 func die() -> void:
 	died.emit()
