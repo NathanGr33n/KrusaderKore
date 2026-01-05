@@ -4,18 +4,22 @@
 [ext_resource type="PackedScene" uid="uid://bnkx8f7hh0m4r" path="res://scenes/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" uid="uid://c2fj8k3m9xh7p" path="res://scenes/enemy.tscn" id="3_enemy"]
 [ext_resource type="PackedScene" uid="uid://c9h5k3m8x2p7n" path="res://scenes/enemy_elite.tscn" id="4_enemy_elite"]
-[ext_resource type="PackedScene" uid="uid://dh5m2x9p1k8vn" path="res://scenes/xp_gem.tscn" id="5_xp_gem"]
-[ext_resource type="PackedScene" uid="uid://b8jq4m7n2xk9t" path="res://scenes/hud.tscn" id="6_hud"]
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="7_game_manager"]
-[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="8_spawner"]
-[ext_resource type="Script" path="res://scripts/upgrade_manager.gd" id="9_upgrade"]
-[ext_resource type="PackedScene" uid="uid://c8h4p3k9m2n7x" path="res://scenes/level_up_ui.tscn" id="10_level_up"]
+[ext_resource type="PackedScene" uid="uid://c5k2m7x9p4n3h" path="res://scenes/enemy_archer.tscn" id="5_archer"]
+[ext_resource type="PackedScene" uid="uid://d6k3m8x4p9n5h" path="res://scenes/enemy_raider.tscn" id="6_raider"]
+[ext_resource type="PackedScene" uid="uid://b7k4m9x2p8n6h" path="res://scenes/enemy_mamluk.tscn" id="7_mamluk"]
+[ext_resource type="PackedScene" uid="uid://c8k5m7x3p2n9h" path="res://scenes/enemy_ghoul.tscn" id="8_ghoul"]
+[ext_resource type="PackedScene" uid="uid://dh5m2x9p1k8vn" path="res://scenes/xp_gem.tscn" id="9_xp_gem"]
+[ext_resource type="PackedScene" uid="uid://b8jq4m7n2xk9t" path="res://scenes/hud.tscn" id="10_hud"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="11_game_manager"]
+[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="12_spawner"]
+[ext_resource type="Script" path="res://scripts/upgrade_manager.gd" id="13_upgrade"]
+[ext_resource type="PackedScene" uid="uid://c8h4p3k9m2n7x" path="res://scenes/level_up_ui.tscn" id="14_level_up"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_main")
 
 [node name="GameManager" type="Node" parent="."]
-script = ExtResource("7_game_manager")
+script = ExtResource("11_game_manager")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -23,14 +27,18 @@ script = ExtResource("7_game_manager")
 position = Vector2(640, 360)
 
 [node name="EnemySpawner" type="Node2D" parent="."]
-script = ExtResource("8_spawner")
+script = ExtResource("12_spawner")
 enemy_scene = ExtResource("3_enemy")
 elite_enemy_scene = ExtResource("4_enemy_elite")
-xp_gem_scene = ExtResource("5_xp_gem")
+archer_enemy_scene = ExtResource("5_archer")
+raider_enemy_scene = ExtResource("6_raider")
+mamluk_enemy_scene = ExtResource("7_mamluk")
+ghoul_enemy_scene = ExtResource("8_ghoul")
+xp_gem_scene = ExtResource("9_xp_gem")
 
 [node name="UpgradeManager" type="Node" parent="."]
-script = ExtResource("9_upgrade")
+script = ExtResource("13_upgrade")
 
-[node name="HUD" parent="." instance=ExtResource("6_hud")]
+[node name="HUD" parent="." instance=ExtResource("10_hud")]
 
-[node name="LevelUpUI" parent="." instance=ExtResource("10_level_up")]
+[node name="LevelUpUI" parent="." instance=ExtResource("14_level_up")]

@@ -3,6 +3,10 @@ class_name EnemySpawner
 
 @export var enemy_scene: PackedScene
 @export var elite_enemy_scene: PackedScene
+@export var archer_enemy_scene: PackedScene
+@export var raider_enemy_scene: PackedScene
+@export var mamluk_enemy_scene: PackedScene
+@export var ghoul_enemy_scene: PackedScene
 @export var xp_gem_scene: PackedScene
 @export var spawn_interval: float = 2.0
 @export var spawn_distance: float = 600.0
@@ -43,10 +47,8 @@ func _process(delta: float) -> void:
 			spawn_timer = current_spawn_interval
 
 func spawn_enemy() -> void:
-	# Decide if spawning elite
-	var scene_to_spawn = enemy_scene
-	if elite_enemy_scene and randf() < elite_spawn_chance:
-		scene_to_spawn = elite_enemy_scene
+	# Select enemy type based on weighted chances
+	var scene_to_spawn = _select_enemy_type()
 	
 	var enemy = scene_to_spawn.instantiate() as Enemy
 	if not enemy:
@@ -63,6 +65,27 @@ func spawn_enemy() -> void:
 	if parent:
 		parent.add_child(enemy)
 		enemies_spawned += 1
+
+func _select_enemy_type() -> PackedScene:
+	# Weighted enemy selection
+	var roll = randf()
+	
+	# Elite chance (10%)
+	if elite_enemy_scene and roll < 0.10:
+		return elite_enemy_scene
+	
+	# Special enemies (40% total)
+	if roll < 0.25 and archer_enemy_scene:
+		return archer_enemy_scene
+	if roll < 0.35 and raider_enemy_scene:
+		return raider_enemy_scene
+	if roll < 0.45 and mamluk_enemy_scene:
+		return mamluk_enemy_scene
+	if roll < 0.50 and ghoul_enemy_scene:
+		return ghoul_enemy_scene
+	
+	# Default basic enemy (50%)
+	return enemy_scene
 
 func _on_enemy_died(position: Vector2, xp_value: int) -> void:
 	# Spawn XP gem at enemy death position

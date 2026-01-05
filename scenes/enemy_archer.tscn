@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5k2m7x9p4n3h"]
+
+[ext_resource type="Script" path="res://scripts/enemy_archer.gd" id="1_archer"]
+[ext_resource type="PackedScene" uid="uid://d3m7x2k9p4h8n" path="res://scenes/projectile.tscn" id="2_projectile"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_archer"]
+radius = 12.0
+
+[node name="EnemyArcher" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_archer")
+projectile_scene = ExtResource("2_projectile")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_archer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.6, 0.3, 1)
+texture = ExtResource("res://icon.svg")
+scale = Vector2(0.19, 0.19)
