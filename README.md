@@ -59,6 +59,15 @@ A Vampire Survivors-style auto-combat horde-survival roguelite set during the Th
 - **Game Over Screen**: Displays run stats, currency earned, with restart and menu options
 - **Main Menu System**: Complete menu flow (character select → upgrades shop → game → game over → menu)
 
+### Phase 5 — QA & Polish (COMPLETE)
+
+✅ Polish & Quality:
+- **Pause Menu**: ESC key pause with resume, settings, and quit options
+- **Difficulty Scaling**: Progressive enemy stat increases (health/damage/XP double at 5 minutes)
+- **Balanced Gameplay**: Tuned weapon damage, cooldowns, and upgrade costs
+- **Bug Fixes**: Addressed gameplay issues and edge cases
+- **Process Mode Management**: Proper pause/unpause handling across all UI layers
+
 ### Current Features
 - Player with health, armor, regen, and stat modifiers (might/area/cooldown/faith)
 - 7 weapon types with unique mechanics (arc, homing, multi-shot, orbiting, radial burst, boomerang, heavy strike)
