@@ -90,5 +90,4 @@ func _on_restart_requested() -> void:
 	get_tree().reload_current_scene()
 
 func _on_menu_requested() -> void:
-	# TODO: Load character selection scene
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8k6m7x4p3n9h"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_menu"]
+[ext_resource type="PackedScene" uid="uid://c6k8m4x7p2n5h" path="res://scenes/character_selection_ui.tscn" id="2_char_select"]
+[ext_resource type="PackedScene" uid="uid://d7k5m9x3p8n4h" path="res://scenes/upgrades_shop_ui.tscn" id="3_shop"]
+[ext_resource type="Script" path="res://scripts/character_manager.gd" id="4_char_manager"]
+[ext_resource type="Script" path="res://scripts/meta_data.gd" id="5_meta"]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1_menu")
+
+[node name="CharacterSelectionUI" parent="." instance=ExtResource("2_char_select")]
+
+[node name="UpgradesShopUI" parent="." instance=ExtResource("3_shop")]
+
+[node name="CharacterManager" type="Node" parent="."]
+script = ExtResource("4_char_manager")
+
+[node name="MetaData" type="Node" parent="."]
+script = ExtResource("5_meta")
