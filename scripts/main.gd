@@ -8,6 +8,7 @@ extends Node2D
 @onready var upgrade_manager: UpgradeManager = $UpgradeManager
 @onready var level_up_ui: LevelUpUI = $LevelUpUI
 @onready var game_over_ui: GameOverUI = $GameOverUI
+@onready var pause_menu: PauseMenu = $PauseMenu
 @onready var meta_data: MetaData = $MetaData
 
 func _ready() -> void:
@@ -54,6 +55,10 @@ func _ready() -> void:
 	# Load meta data
 	if meta_data:
 		meta_data.load_data()
+	
+	# Connect pause menu
+	if pause_menu:
+		pause_menu.quit_requested.connect(_on_pause_quit)
 
 func _process(delta: float) -> void:
 	# Camera follows player
@@ -90,4 +95,7 @@ func _on_restart_requested() -> void:
 	get_tree().reload_current_scene()
 
 func _on_menu_requested() -> void:
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+func _on_pause_quit() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

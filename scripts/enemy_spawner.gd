@@ -12,6 +12,7 @@ class_name EnemySpawner
 @export var spawn_distance: float = 600.0
 @export var max_enemies: int = 100
 @export var elite_spawn_chance: float = 0.1  # 10% chance
+@export var difficulty_scale_time: float = 300.0  # Time to reach 2x difficulty
 
 var player: Player
 var spawn_timer: float = 0.0
@@ -54,6 +55,9 @@ func spawn_enemy() -> void:
 	if not enemy:
 		return
 	
+	# Apply difficulty scaling
+	_apply_difficulty_scaling(enemy)
+	
 	# Spawn at random position around player
 	var angle = randf() * TAU
 	var spawn_pos = player.global_position + Vector2(cos(angle), sin(angle)) * spawn_distance
@@ -86,6 +90,15 @@ func _select_enemy_type() -> PackedScene:
 	
 	# Default basic enemy (50%)
 	return enemy_scene
+
+func _apply_difficulty_scaling(enemy: Enemy) -> void:
+	# Scale enemy stats based on game time
+	var difficulty_multiplier = 1.0 + (game_time / difficulty_scale_time)
+	
+	enemy.max_health *= difficulty_multiplier
+	enemy.current_health = enemy.max_health
+	enemy.damage *= difficulty_multiplier
+	enemy.xp_value = int(enemy.xp_value * difficulty_multiplier)
 
 func _on_enemy_died(position: Vector2, xp_value: int) -> void:
 	# Spawn XP gem at enemy death position

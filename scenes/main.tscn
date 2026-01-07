@@ -15,7 +15,8 @@
 [ext_resource type="Script" path="res://scripts/upgrade_manager.gd" id="13_upgrade"]
 [ext_resource type="PackedScene" uid="uid://c8h4p3k9m2n7x" path="res://scenes/level_up_ui.tscn" id="14_level_up"]
 [ext_resource type="PackedScene" uid="uid://b9m5k7x3p4n8h" path="res://scenes/game_over_ui.tscn" id="15_game_over"]
-[ext_resource type="Script" path="res://scripts/meta_data.gd" id="16_meta"]
+[ext_resource type="PackedScene" uid="uid://c8k7m5x4p2n6h" path="res://scenes/pause_menu.tscn" id="16_pause"]
+[ext_resource type="Script" path="res://scripts/meta_data.gd" id="17_meta"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_main")
@@ -47,5 +48,7 @@ script = ExtResource("13_upgrade")
 
 [node name="GameOverUI" parent="." instance=ExtResource("15_game_over")]
 
+[node name="PauseMenu" parent="." instance=ExtResource("16_pause")]
+
 [node name="MetaData" type="Node" parent="."]
-script = ExtResource("16_meta")
+script = ExtResource("17_meta")
