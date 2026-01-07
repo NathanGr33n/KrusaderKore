@@ -41,6 +41,17 @@ A Vampire Survivors-style auto-combat horde-survival roguelite set during the Th
   - Incense + Desert Wind → Sacred Censers (faster orbit)
 - **Weighted Enemy Spawning**: 50% basic, 15% archer, 10% raider, 10% mamluk, 5% ghoul, 10% elite
 
+### Phase 4 — Meta-Progression (COMPLETE)
+
+✅ Meta Systems Implemented:
+- **Save/Load System**: JSON-based persistent data storage in user directory
+- **3 Playable Characters**: Templar Knight (balanced), Hospitaller (tank/healer), Pilgrim Mystic (faith/AoE)
+- **Character Unlock System**: Characters unlock with Crusader Marks and achievements
+- **Meta Currency**: Crusader Marks earned from kills (1 per kill) and survival time (5 per minute)
+- **Run Statistics Tracking**: Persistent tracking of total kills, runs, time survived, best time, highest level
+- **Game Over Screen**: Displays run stats, currency earned, with restart and menu options
+- **Persistent Upgrades**: Framework for permanent stat boosts (health/armor/damage/speed/XP)
+
 ### Current Features
 - Player with health, armor, regen, and stat modifiers (might/area/cooldown/faith)
 - 7 weapon types with unique mechanics (arc, homing, multi-shot, orbiting, radial burst, boomerang, heavy strike)
