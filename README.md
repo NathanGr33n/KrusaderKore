@@ -46,11 +46,18 @@ A Vampire Survivors-style auto-combat horde-survival roguelite set during the Th
 ✅ Meta Systems Implemented:
 - **Save/Load System**: JSON-based persistent data storage in user directory
 - **3 Playable Characters**: Templar Knight (balanced), Hospitaller (tank/healer), Pilgrim Mystic (faith/AoE)
-- **Character Unlock System**: Characters unlock with Crusader Marks and achievements
+- **Character Selection Screen**: Full UI for viewing characters, stats, unlock requirements, and starting runs
+- **Character Unlock System**: Characters unlock with Crusader Marks (50/100 cost)
 - **Meta Currency**: Crusader Marks earned from kills (1 per kill) and survival time (5 per minute)
+- **Persistent Upgrade Shop**: 5 permanent upgrades with scaling costs
+  - Fortitude: +10 Max Health (10 levels)
+  - Blessed Armor: +1 Starting Armor (8 levels)
+  - Righteous Fury: +5% Starting Damage (10 levels)
+  - Swift Journey: +5 Starting Move Speed (8 levels)
+  - Battle Wisdom: +10% XP Gain (5 levels)
 - **Run Statistics Tracking**: Persistent tracking of total kills, runs, time survived, best time, highest level
 - **Game Over Screen**: Displays run stats, currency earned, with restart and menu options
-- **Persistent Upgrades**: Framework for permanent stat boosts (health/armor/damage/speed/XP)
+- **Main Menu System**: Complete menu flow (character select → upgrades shop → game → game over → menu)
 
 ### Current Features
 - Player with health, armor, regen, and stat modifiers (might/area/cooldown/faith)
