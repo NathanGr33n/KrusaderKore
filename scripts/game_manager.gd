@@ -9,7 +9,7 @@ var game_time: float = 0.0
 var kill_count: int = 0
 
 signal game_started
-signal game_over
+signal game_over(time: float, kills: int, level: int)
 signal stats_updated(time: float, kills: int, level: int)
 
 func _ready() -> void:
@@ -30,7 +30,8 @@ func _process(delta: float) -> void:
 
 func _on_player_died() -> void:
 	is_game_over = true
-	game_over.emit()
+	var final_level = player.level if player else 1
+	game_over.emit(game_time, kill_count, final_level)
 	
 	# Stop spawning
 	if enemy_spawner:

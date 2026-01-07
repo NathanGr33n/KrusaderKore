@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="12_spawner"]
 [ext_resource type="Script" path="res://scripts/upgrade_manager.gd" id="13_upgrade"]
 [ext_resource type="PackedScene" uid="uid://c8h4p3k9m2n7x" path="res://scenes/level_up_ui.tscn" id="14_level_up"]
+[ext_resource type="PackedScene" uid="uid://b9m5k7x3p4n8h" path="res://scenes/game_over_ui.tscn" id="15_game_over"]
+[ext_resource type="Script" path="res://scripts/meta_data.gd" id="16_meta"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_main")
@@ -42,3 +44,8 @@ script = ExtResource("13_upgrade")
 [node name="HUD" parent="." instance=ExtResource("10_hud")]
 
 [node name="LevelUpUI" parent="." instance=ExtResource("14_level_up")]
+
+[node name="GameOverUI" parent="." instance=ExtResource("15_game_over")]
+
+[node name="MetaData" type="Node" parent="."]
+script = ExtResource("16_meta")

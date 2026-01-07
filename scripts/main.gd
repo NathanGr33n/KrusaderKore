@@ -7,6 +7,8 @@ extends Node2D
 @onready var hud: HUD = $HUD
 @onready var upgrade_manager: UpgradeManager = $UpgradeManager
 @onready var level_up_ui: LevelUpUI = $LevelUpUI
+@onready var game_over_ui: GameOverUI = $GameOverUI
+@onready var meta_data: MetaData = $MetaData
 
 func _ready() -> void:
 	# Setup camera to follow player
@@ -40,6 +42,18 @@ func _ready() -> void:
 	
 	if player:
 		player.level_up.connect(_on_player_level_up)
+	
+	# Connect game over
+	if game_manager and game_over_ui:
+		game_manager.game_over.connect(_on_game_over)
+	
+	if game_over_ui:
+		game_over_ui.restart_requested.connect(_on_restart_requested)
+		game_over_ui.menu_requested.connect(_on_menu_requested)
+	
+	# Load meta data
+	if meta_data:
+		meta_data.load_data()
 
 func _process(delta: float) -> void:
 	# Camera follows player
@@ -62,3 +76,19 @@ func _on_player_level_up(level: int) -> void:
 func _on_upgrade_chosen(upgrade: UpgradeData) -> void:
 	if upgrade_manager:
 		upgrade_manager.apply_upgrade(upgrade)
+
+func _on_game_over(time: float, kills: int, level: int) -> void:
+	if game_over_ui:
+		game_over_ui.show_game_over(time, kills, level)
+	
+	# Save stats to meta progression
+	if meta_data:
+		var currency = game_over_ui.get_currency_earned()
+		meta_data.add_run_stats(kills, time, level, currency)
+
+func _on_restart_requested() -> void:
+	get_tree().reload_current_scene()
+
+func _on_menu_requested() -> void:
+	# TODO: Load character selection scene
+	get_tree().reload_current_scene()
